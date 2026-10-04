@@ -6,8 +6,10 @@ const cookieParser = require('cookie-parser');
 
 const environment = require('./config/environment');
 const healthRoutes = require('./routes/healthRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
+
 
 // ── Security Hardening ─────────────────────────
 app.use(helmet());
@@ -47,6 +49,9 @@ if (environment.nodeEnv === 'development') {
 // ── Mounted Routes ─────────────────────────────
 app.use('/api/health', healthRoutes);
 app.use('/health', healthRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
+
 
 // Fallback 404 handler
 app.use((req, res, next) => {
