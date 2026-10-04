@@ -7,8 +7,12 @@ const cookieParser = require('cookie-parser');
 const environment = require('./config/environment');
 const healthRoutes = require('./routes/healthRoutes');
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
+const ownerRoutes = require('./routes/ownerRoutes');
 
 const app = express();
+
 
 
 // ── Security Hardening ─────────────────────────
@@ -51,6 +55,13 @@ app.use('/api/health', healthRoutes);
 app.use('/health', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/admin', adminRoutes);
+app.use('/api/user', userRoutes);
+app.use('/user', userRoutes);
+app.use('/api/store-owner', ownerRoutes);
+app.use('/store-owner', ownerRoutes);
+
 
 
 // Fallback 404 handler
