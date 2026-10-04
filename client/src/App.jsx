@@ -7,6 +7,11 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminUsersPage from './pages/admin/AdminUsersPage';
+import AdminStoresPage from './pages/admin/AdminStoresPage';
+import UserDashboard from './pages/user/UserDashboard';
+import OwnerDashboard from './pages/owner/OwnerDashboard';
 import NotFoundPage from './pages/NotFoundPage';
 import UnauthorizedPage from './pages/UnauthorizedPage';
 
@@ -64,7 +69,53 @@ function App() {
         <Route path="/signup" element={<RegisterPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-        {/* Dynamic feature routes will be linked in the next commit */}
+        {/* System Administrator Protected Routes */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminUsersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/stores"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminStoresPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Normal Consumer Protected Routes */}
+        <Route
+          path="/user"
+          element={
+            <ProtectedRoute allowedRoles={['user']}>
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Store Owner Protected Routes */}
+        <Route
+          path="/owner"
+          element={
+            <ProtectedRoute allowedRoles={['store_owner']}>
+              <OwnerDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Catch-all 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
