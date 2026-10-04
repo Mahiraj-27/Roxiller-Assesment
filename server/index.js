@@ -62,6 +62,11 @@ app.use((req, res, next) => {
   });
 });
 
+// Global error handler
+const { errorHandler } = require('./middleware/errorMiddleware');
+app.use(errorHandler);
+
+
 // ── Startup & Initialization ───────────────────
 if (require.main === module) {
   const bootstrapDb = require('./config/bootstrapDb');
