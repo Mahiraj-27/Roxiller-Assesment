@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import NotFoundPage from './pages/NotFoundPage';
 import UnauthorizedPage from './pages/UnauthorizedPage';
 
@@ -54,9 +57,14 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        {/* Public Routes */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<RootRedirect />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<RegisterPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
+
+        {/* Dynamic feature routes will be linked in the next commit */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
