@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import CursorParticles from './components/CursorParticles';
 import LandingPage from './pages/LandingPage';
+
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -35,7 +37,11 @@ const RootRedirect = () => {
 function App() {
   return (
     <>
+      {/* Subtle interactive cursor particle effect */}
+      <CursorParticles />
+
       <Toaster
+
         position="top-right"
         toastOptions={{
           style: {
